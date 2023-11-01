@@ -1,23 +1,25 @@
 import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
-import "./createForm.css";
 import axios from "axios";
 
-export const CreateForm = () => {
+import "./createForm.css";
+
+export const UpdateForm = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
   const [brand, setBrand] = useState("");
   const [createDate, setCreateDate] = useState(new Date().toLocaleString());
-  const [id, setId] = useState(0);
+  const [shopId, setShopId] = useState(0);
 
-  const formattedId = parseInt(id, 10);
+  const formattedId = parseInt(shopId, 10);
   const formattedPrice = parseInt(price, 10);
 
-  const apiUrl = "https://localhost:7010/api/Product/CreateProduct";
+  const apiUrl = `https://localhost:7010/api/Product/UpdateProduct?id=${id}`;
   const urlParams = new URLSearchParams();
 
   urlParams.append("ProductName", name);
@@ -26,7 +28,7 @@ export const CreateForm = () => {
   urlParams.append("ProductImage", img);
   urlParams.append("Brand", brand);
   urlParams.append("CreateDate", createDate);
-  urlParams.append("ShopId", id);
+  urlParams.append("ShopId", shopId);
 
   const data = {
     ProductName: name,
@@ -38,17 +40,17 @@ export const CreateForm = () => {
     ShopId: formattedId,
   };
 
-  const newApiUrl = `${apiUrl}?${urlParams.toString()}`;
+  const newApiUrl = `${apiUrl}&${urlParams.toString()}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post(newApiUrl, data)
+      .put(newApiUrl, data)
       .then((res) => {
-        alert("Thêm sản phẩm thành công");
+        alert("Sửa sản phẩm thành công");
         console.log(res);
-        navigate(`/`);
+        navigate(`/product/${id}`);
       })
       .catch((err) => console.log(err));
 
@@ -59,12 +61,12 @@ export const CreateForm = () => {
     setDescription("");
     setImg("");
     setBrand("");
-    setId("");
+    setShopId("");
   };
 
   return (
     <div className="container-shop mt-5">
-      <h2>Create Product</h2>
+      <h2>Update Product</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Tên sản phẩm</label>
@@ -127,19 +129,19 @@ export const CreateForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="Id">Id</label>
+          <label htmlFor="Id">ShopId</label>
           <input
             type="number"
             className="form-control"
             id="adminId"
             placeholder="Enter product quantity"
-            value={id}
-            onChange={(e) => setId(parseInt(e.target.value))}
+            value={shopId}
+            onChange={(e) => setShopId(parseInt(e.target.value))}
             required
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Create
+          Update
         </button>
       </form>
     </div>

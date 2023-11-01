@@ -1,15 +1,34 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "./components/navbar";
 import { Shop } from "./pages/shop/shop";
 import { Footer } from "./components/Footer/footer";
 import { CreateForm } from "./pages/shopadmin/createForm";
 import { ProductDescription } from "./pages/shop/productDescription";
 import { Login } from "./pages/login/login";
+import { UpdateForm } from "./pages/shopadmin/updateForm";
+import { Signup } from "./pages/login/singup";
+import { Cart } from "./pages/cart/cart";
+import { Scam } from "./pages/scam/scam";
+import { ScamDescription } from "./pages/scam/scamDescription";
+import { CreateScam } from "./pages/scam/createscam";
 function App() {
   useEffect(() => {
     document.title = "Legit Check";
+  }, []);
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const storedUserName = localStorage.getItem("userName");
+
+    if (isLoggedIn && storedUserName) {
+      setLoggedIn(true);
+      setUserName(storedUserName);
+    }
   }, []);
 
   return (
@@ -21,6 +40,12 @@ function App() {
           <Route path="/createProduct" element={<CreateForm />} />
           <Route path="/product/:id" element={<ProductDescription />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/scam" element={<Scam />} />
+          <Route path="/createscam" element={<CreateScam />} />
+          <Route path="/scamdescription/:id" element={<ScamDescription />} />
+          <Route path="/updateProduct/:id" element={<UpdateForm />} />
         </Routes>
       </Router>
       <Footer />

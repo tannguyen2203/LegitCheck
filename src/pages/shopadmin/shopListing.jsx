@@ -25,6 +25,7 @@ function ShopListing() {
         {productData.map((product) => (
           <div key={product.id}>
             <Product data={product} />
+            <button className="addtoCart">Thêm vào giỏ</button>
           </div>
         ))}
       </div>

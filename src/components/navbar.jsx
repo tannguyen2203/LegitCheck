@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useE } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import { ShoppingCart, UserCircle } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
 import logo from "./logo.jpg";
 import "./navbar.css";
 
@@ -11,6 +12,8 @@ export const Navbar = () => {
 
   console.log(userName);
 
+  const handleLogout = () => {};
+
   return (
     <div className="navbar">
       <div>
@@ -18,13 +21,13 @@ export const Navbar = () => {
       </div>
       <div className="links">
         <div className="check-legit-btn">
-          <Link>Check legit</Link>
+          <Link to="/scam">Check legit</Link>
         </div>
         <Link to="/">Trang chủ</Link>
         <Link to="/cart">
           <ShoppingCart size={32} />
         </Link>
-        {/* <Link to="/createProduct">Product Management</Link> */}
+        <Link to="/createProduct">Tạo sản phẩm</Link>
         <div>
           {loggedIn ? (
             <div>
@@ -32,6 +35,7 @@ export const Navbar = () => {
                 <UserCircle size={50} />
               </Link>
               <p>Welcome, {userName}!</p>
+              <button onClick={handleLogout}>Logout</button>
             </div>
           ) : (
             <div>

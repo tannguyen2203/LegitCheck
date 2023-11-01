@@ -11,7 +11,6 @@ export const Product = (props) => {
         </p>
         <p style={{ color: "red" }}>{productPrice}đ</p>
       </div>
-      <button className="addToCartBtn">Add to Cart</button>
     </div>
   );
 };
