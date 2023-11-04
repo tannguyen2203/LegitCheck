@@ -12,6 +12,10 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
 
+  const handleBack = () => {
+    navigate("/login");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -105,6 +109,9 @@ export const Signup = () => {
         <div className="form-group submit-btn">
           <input type="submit" value="Submit" />
         </div>
+        <button className="button-back" onClick={handleBack}>
+          Back
+        </button>
       </form>
     </div>
   );

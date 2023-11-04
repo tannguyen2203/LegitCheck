@@ -13,6 +13,10 @@ import { Cart } from "./pages/cart/cart";
 import { Scam } from "./pages/scam/scam";
 import { ScamDescription } from "./pages/scam/scamDescription";
 import { CreateScam } from "./pages/scam/createscam";
+import { LoginShop } from "./pages/login/loginshop";
+import { ShopCRUD } from "./pages/shop/shopcrud";
+import { CheckOut } from "./pages/shop/checkout";
+
 function App() {
   useEffect(() => {
     document.title = "Legit Check";
@@ -37,9 +41,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Shop />} />
+          <Route path="/shopcrud" element={<ShopCRUD />} />
+          <Route path="/checkout" element={<CheckOut />} />
           <Route path="/createProduct" element={<CreateForm />} />
           <Route path="/product/:id" element={<ProductDescription />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/loginshop" element={<LoginShop />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/scam" element={<Scam />} />

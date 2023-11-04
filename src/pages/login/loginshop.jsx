@@ -2,28 +2,34 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./login.css";
-export const Login = () => {
+
+export const LoginShop = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleRegister = () => {
+    navigate("/login");
+  };
+
+  const handleShopLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `https://localhost:7010/api/User/LoginUser?email=${encodeURIComponent(
+        `https://localhost:7010/api/Shop/LoginShop?email=${encodeURIComponent(
           email
         )}&password=${encodeURIComponent(password)}`
       );
-      const userName = response.data.userName;
-      const userEmail = response.data.userEmail;
-      const userPassword = response.data.userPassord;
+      const userName = response.data.shopName;
+      const userEmail = response.data.shopEmail;
+      const userPassword = response.data.shopPassword;
       if (email === userEmail && password === userPassword) {
+        console.log(response.data);
         console.log("Logged in successfully");
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("userName", userName);
         console.log(localStorage.getItem("userName"));
-        navigate("/", { state: { loggedIn: true, userName: userName } });
+        navigate("/", { state: { loggedIn: true, shopName: userName } });
       } else {
         alert("Invalid email or password");
       }
@@ -33,18 +39,10 @@ export const Login = () => {
     }
   };
 
-  const handleRegister = () => {
-    navigate("/signup");
-  };
-
-  const handleShopLogin = () => {
-    navigate("/loginshop");
-  };
-
   return (
     <div className="login-form">
       <form>
-        <h1>Đăng nhập</h1>
+        <h1>Shop Đăng nhập</h1>
         <div className="content">
           <div className="input-field">
             <input
@@ -66,9 +64,8 @@ export const Login = () => {
           </div>
         </div>
         <div className="action">
-          <button onClick={handleRegister}>Register</button>
-          <button onClick={handleLogin}>Sign in</button>
-          <button onClick={handleShopLogin}>Login for Shop</button>
+          <button onClick={handleRegister}>User Login</button>
+          <button onClick={handleShopLogin}>Sign in</button>
         </div>
       </form>
     </div>

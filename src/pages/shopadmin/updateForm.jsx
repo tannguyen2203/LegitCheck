@@ -50,7 +50,7 @@ export const UpdateForm = () => {
       .then((res) => {
         alert("Sửa sản phẩm thành công");
         console.log(res);
-        navigate(`/product/${id}`);
+        navigate(`/shopcrud`);
       })
       .catch((err) => console.log(err));
 

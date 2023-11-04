@@ -48,7 +48,7 @@ export const CreateForm = () => {
       .then((res) => {
         alert("Thêm sản phẩm thành công");
         console.log(res);
-        navigate(`/`);
+        navigate(`/shopcrud`);
       })
       .catch((err) => console.log(err));
 

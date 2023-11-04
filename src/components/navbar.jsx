@@ -10,8 +10,6 @@ export const Navbar = () => {
   const userName = location.state?.userName || "";
   const loggedIn = location.state?.loggedIn || false;
 
-  console.log(userName);
-
   const handleLogout = () => {};
 
   return (
@@ -27,7 +25,7 @@ export const Navbar = () => {
         <Link to="/cart">
           <ShoppingCart size={32} />
         </Link>
-        <Link to="/createProduct">Tạo sản phẩm</Link>
+
         <div>
           {loggedIn ? (
             <div>
