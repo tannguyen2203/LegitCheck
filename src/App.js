@@ -1,4 +1,5 @@
 import "./App.css";
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Navbar } from "./components/navbar";
@@ -59,6 +60,7 @@ function App() {
         </UserProvider>
       </Router>
       <Footer />
+      <Analytics />
     </div>
   );
 }
