@@ -8,7 +8,7 @@ export const Shop = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://localhost:7010/api/Product/GetAllProduct")
+    fetch("https://legitcheck.up.railway.app/api/Product/GetAllProduct")
       .then((res) => {
         return res.json();
       })

@@ -78,12 +78,12 @@ export const ProductDescription = () => {
           <button className="addToCartBtn" onClick={handleCart}>
             Add Cart
           </button>
-          <button className="addToCartBtn" onClick={handleUpdate}>
+          {/* <button className="addToCartBtn" onClick={handleUpdate}>
             Update
           </button>
           <button className="addToCartBtn" onClick={handleDelete}>
             Xóa
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
