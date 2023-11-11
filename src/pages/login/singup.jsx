@@ -21,7 +21,7 @@ export const Signup = () => {
 
     const formattedPhone = parseInt(phone, 10);
 
-    const apiUrl = "https://localhost:7010/api/User/CreateUser";
+    const apiUrl = "https://legitcheck.up.railway.app/api/User/CreateUser";
     const urlParams = new URLSearchParams();
 
     urlParams.append("userName", fullName);

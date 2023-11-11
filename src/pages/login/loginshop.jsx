@@ -16,7 +16,7 @@ export const LoginShop = () => {
     e.preventDefault();
     try {
       const response = await axios.get(
-        `https://localhost:7010/api/Shop/LoginShop?email=${encodeURIComponent(
+        `https://legitcheck.up.railway.app/api/Shop/LoginShop?email=${encodeURIComponent(
           email
         )}&password=${encodeURIComponent(password)}`
       );

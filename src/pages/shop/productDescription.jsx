@@ -10,7 +10,7 @@ export const ProductDescription = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`https://localhost:7010/api/Product/GetProductById/${id}`)
+    fetch(`https://legitcheck.up.railway.app/api/Product/GetProductById/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -25,7 +25,9 @@ export const ProductDescription = () => {
 
     if (confirmed) {
       axios
-        .delete(`https://localhost:7010/api/Product/DeleteProduct/id?id=${id}`)
+        .delete(
+          `https://legitcheck.up.railway.app/api/Product/DeleteProduct/id?id=${id}`
+        )
         .then((res) => {
           alert("Sản phẩm đã được xóa thành công");
           navigate("/");
@@ -44,7 +46,7 @@ export const ProductDescription = () => {
   const handleCart = async () => {
     try {
       const response = await axios.post(
-        `https://localhost:7010/api/Cart/AddItemToCart?userId=1&productId=${id}&quantity=1`
+        `https://legitcheck.up.railway.app/api/Cart/AddItemToCart?userId=1&productId=${id}&quantity=1`
       );
       // Xử lý phản hồi từ API nếu cần
       console.log(response);

@@ -11,7 +11,7 @@ export const CreateScam = () => {
   const [userId, setUserId] = useState(0);
   const [shopId, setShopId] = useState(0);
 
-  const apiUrl = "https://localhost:7010/api/Scam/CreateScamPost";
+  const apiUrl = "hhttps://legitcheck.up.railway.app/api/Scam/CreateScamPost";
   const urlParams = new URLSearchParams();
   urlParams.append("scammerName", name);
   urlParams.append("bankId", bankId);

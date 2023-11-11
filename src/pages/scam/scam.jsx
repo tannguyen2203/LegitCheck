@@ -8,7 +8,7 @@ export const Scam = () => {
 
   useEffect(() => {
     axios
-      .get("https://localhost:7010/api/Scam/GetAllScamPost")
+      .get("https://legitcheck.up.railway.app/api/Scam/GetAllScamPost")
       .then((response) => setScamPosts(response.data))
       .catch((error) => console.error(error));
   }, []);

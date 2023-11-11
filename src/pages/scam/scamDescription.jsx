@@ -9,7 +9,7 @@ export const ScamDescription = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`https://localhost:7010/api/Scam/GetScamPostById/${id}`)
+      .get(`https://legitcheck.up.railway.app/api/Scam/GetScamPostById/${id}`)
       .then((response) => {
         setScamData(response.data);
         console.log(response);

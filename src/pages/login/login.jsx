@@ -5,29 +5,41 @@ import "./login.css";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(
-        `https://localhost:7010/api/User/LoginUser?email=${encodeURIComponent(
-          email
-        )}&password=${encodeURIComponent(password)}`
-      );
-      const userName = response.data.userName;
-      const userEmail = response.data.userEmail;
-      const userPassword = response.data.userPassord;
-      if (email === userEmail && password === userPassword) {
-        console.log("Logged in successfully");
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("userName", userName);
-        console.log(localStorage.getItem("userName"));
-        navigate("/", { state: { loggedIn: true, userName: userName } });
+      const url = `https://legitcheck.up.railway.app/api/User/LoginUser?email=${encodeURIComponent(
+        email
+      )}&password=${encodeURIComponent(password)}`;
+      let item = { email, password };
+      let result = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(item),
+      });
+
+      result = await result.json();
+
+      // Kiểm tra các điều kiện khác để xác định kết quả đăng nhập
+      if (result && result.userEmail && result.userPassord) {
+        const userEmail = result.userEmail;
+        const userPassword = result.userPassord;
+        if (email === userEmail && password === userPassword) {
+          localStorage.setItem("userToken", JSON.stringify(result));
+          localStorage.setItem("userId", result.id);
+          navigate("/");
+        } else {
+          alert("Sai mật khẩu hoặc password");
+          // Hoặc thực hiện các hành động khác khi mật khẩu không đúng
+        }
       } else {
-        alert("Invalid email or password");
+        alert("Dữ liệu không hợp lệ từ server");
       }
-      console.log(response);
     } catch (error) {
       console.error(error);
     }

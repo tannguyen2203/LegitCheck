@@ -10,7 +10,7 @@ export const ShopCRUD = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://localhost:7010/api/Product/GetAllProduct")
+    fetch("https://legitcheck.up.railway.app/api/Product/GetAllProduct")
       .then((res) => {
         return res.json();
       })
@@ -31,7 +31,7 @@ export const ShopCRUD = () => {
     if (confirmed) {
       axios
         .delete(
-          `https://localhost:7010/api/Product/DeleteProduct/id?id=${productId}`
+          `https://legitcheck.up.railway.app/api/Product/DeleteProduct/id?id=${productId}`
         )
         .then((res) => {
           alert("Sản phẩm đã được xóa thành công");

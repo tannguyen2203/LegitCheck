@@ -16,6 +16,7 @@ import { CreateScam } from "./pages/scam/createscam";
 import { LoginShop } from "./pages/login/loginshop";
 import { ShopCRUD } from "./pages/shop/shopcrud";
 import { CheckOut } from "./pages/shop/checkout";
+import { UserProvider } from "./pages/login/userContext";
 
 function App() {
   useEffect(() => {
@@ -38,22 +39,24 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Shop />} />
-          <Route path="/shopcrud" element={<ShopCRUD />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/createProduct" element={<CreateForm />} />
-          <Route path="/product/:id" element={<ProductDescription />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/loginshop" element={<LoginShop />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/scam" element={<Scam />} />
-          <Route path="/createscam" element={<CreateScam />} />
-          <Route path="/scamdescription/:id" element={<ScamDescription />} />
-          <Route path="/updateProduct/:id" element={<UpdateForm />} />
-        </Routes>
+        <UserProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Shop />} />
+            <Route path="/shopcrud" element={<ShopCRUD />} />
+            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/createProduct" element={<CreateForm />} />
+            <Route path="/product/:id" element={<ProductDescription />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/loginshop" element={<LoginShop />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/scam" element={<Scam />} />
+            <Route path="/createscam" element={<CreateScam />} />
+            <Route path="/scamdescription/:id" element={<ScamDescription />} />
+            <Route path="/updateProduct/:id" element={<UpdateForm />} />
+          </Routes>
+        </UserProvider>
       </Router>
       <Footer />
     </div>

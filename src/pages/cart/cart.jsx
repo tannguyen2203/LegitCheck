@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../login/userContext";
 import axios from "axios";
+
 import "./cart.css";
 
 export const Cart = () => {
   const navigate = useNavigate();
+  const [userId, setUserId] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [refreshCount, setRefreshCount] = useState(0);
 
   useEffect(() => {
-    fetchData();
-  }, [refreshCount]);
+    // Retrieve userId from localStorage
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      setUserId(parseInt(storedUserId, 10));
+    }
+
+    if (userId) {
+      fetchData();
+    }
+  }, [userId]);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://localhost:7010/api/Cart/GetCartsByUserId?id=1"
+        `https://legitcheck.up.railway.app/api/Cart/GetCartsByUserId?id=${userId}`
       );
       const data = response.data;
       setCartItems(data);
@@ -25,10 +36,16 @@ export const Cart = () => {
     }
   };
 
+  console.log(userId);
+
+  useEffect(() => {
+    fetchData();
+  }, [refreshCount]);
+
   const handleRemoveItem = async (productId) => {
     try {
       await axios.delete(
-        `https://localhost:7010/api/Cart/DeleteProduct/id?userId=1&productId=${productId} `
+        `https://legitcheck.up.railway.app/api/Cart/DeleteProduct/id?userId=1&productId=${productId} `
       );
       setRefreshCount((prevCount) => prevCount + 1);
     } catch (error) {
