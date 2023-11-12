@@ -6,16 +6,20 @@ import logo from "./logo.jpg";
 import "./navbar.css";
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const userName = location.state?.userName || "";
   const loggedIn = location.state?.loggedIn || false;
 
   const handleLogout = () => {};
+  const handleBack = () => {
+    navigate("/");
+  };
 
   return (
     <div className="navbar">
       <div>
-        <img className="logo" src={logo} />
+        <img className="logo" src={logo} onClick={handleBack} />
       </div>
       <div className="links">
         <div className="check-legit-btn">

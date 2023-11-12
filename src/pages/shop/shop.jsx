@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
+
 import { Product } from "./product";
 import { useNavigate } from "react-router-dom";
 import "./shop.css";
@@ -36,6 +38,7 @@ export const Shop = () => {
           </div>
         ))}
       </div>
+      <Analytics />
     </div>
   );
 };

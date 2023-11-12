@@ -20,16 +20,14 @@ export const LoginShop = () => {
           email
         )}&password=${encodeURIComponent(password)}`
       );
-      const userName = response.data.shopName;
       const userEmail = response.data.shopEmail;
       const userPassword = response.data.shopPassword;
       if (email === userEmail && password === userPassword) {
         console.log(response.data);
         console.log("Logged in successfully");
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("userName", userName);
-        console.log(localStorage.getItem("userName"));
-        navigate("/", { state: { loggedIn: true, shopName: userName } });
+        localStorage.setItem("shopToken", JSON.stringify(response));
+        localStorage.setItem("shopId", response.data.id);
+        navigate("/shopcrud");
       } else {
         alert("Invalid email or password");
       }

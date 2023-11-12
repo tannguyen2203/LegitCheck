@@ -30,13 +30,10 @@ export const Cart = () => {
       );
       const data = response.data;
       setCartItems(data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(userId);
 
   useEffect(() => {
     fetchData();
@@ -45,7 +42,7 @@ export const Cart = () => {
   const handleRemoveItem = async (productId) => {
     try {
       await axios.delete(
-        `https://legitcheck.up.railway.app/api/Cart/DeleteProduct/id?userId=1&productId=${productId} `
+        `https://legitcheck.up.railway.app/api/Cart/DeleteProduct/id?userId=${userId}&productId=${productId}`
       );
       setRefreshCount((prevCount) => prevCount + 1);
     } catch (error) {
@@ -71,16 +68,12 @@ export const Cart = () => {
                   <h3>{item.product.productName}</h3>
                   <p>{item.product.productPrice}đ</p>
                 </div>
-
-                <div className="prodTotal cartSection"></div>
-                <div className="cartSection removeWrap">
-                  <button
-                    className="remove"
-                    onClick={() => handleRemoveItem(item.productId)}
-                  >
-                    Xóa
-                  </button>
-                </div>
+                <button
+                  className="remove"
+                  onClick={() => handleRemoveItem(item.productId)}
+                >
+                  Xóa
+                </button>
               </div>
             </li>
           ))}

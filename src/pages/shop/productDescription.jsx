@@ -6,7 +6,7 @@ import "./productDescription.css";
 export const ProductDescription = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { userId } = useParams();
+  const userId = localStorage.getItem("userId");
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -44,15 +44,21 @@ export const ProductDescription = () => {
   };
 
   const handleCart = async () => {
-    try {
-      const response = await axios.post(
-        `https://legitcheck.up.railway.app/api/Cart/AddItemToCart?userId=1&productId=${id}&quantity=1`
-      );
-      // Xử lý phản hồi từ API nếu cần
-      console.log(response);
-      alert("Sản phẩm đã được thêm vào giỏ hàng thành công!");
-    } catch (error) {
-      console.error("Lỗi khi thêm sản phẩm vào giỏ hàng:", error);
+    if (userId) {
+      // Kiểm tra nếu userId đã được lưu trong Local Storage
+      try {
+        const response = await axios.post(
+          `https://legitcheck.up.railway.app/api/Cart/AddItemToCart?userId=${userId}&productId=${id}&quantity=1`
+        );
+        console.log(response);
+        alert("Sản phẩm đã được thêm vào giỏ hàng thành công!");
+      } catch (error) {
+        console.error("Lỗi khi thêm sản phẩm vào giỏ hàng:", error);
+      }
+    } else {
+      // Nếu userId không tồn tại trong Local Storage, yêu cầu người dùng đăng nhập trước khi thêm vào giỏ hàng
+      alert("Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng!");
+      navigate("/login"); // Điều hướng đến trang đăng nhập
     }
   };
 
@@ -60,8 +66,15 @@ export const ProductDescription = () => {
     return <div>Loading...</div>;
   }
 
+  const handleBack = () => {
+    navigate("/");
+  };
+
   return (
     <div className="container">
+      <div className="top">
+        <div className="arrow" onClick={handleBack}></div>
+      </div>
       <div>
         <img className="left-column" src={product.productImage} alt="" />
       </div>

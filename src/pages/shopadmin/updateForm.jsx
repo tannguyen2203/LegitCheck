@@ -19,7 +19,7 @@ export const UpdateForm = () => {
   const formattedId = parseInt(shopId, 10);
   const formattedPrice = parseInt(price, 10);
 
-  const apiUrl = `https://localhost:7010/api/Product/UpdateProduct?id=${id}`;
+  const apiUrl = `https://legitcheck.up.railway.app/api/Product/UpdateProduct?id=${id}`;
   const urlParams = new URLSearchParams();
 
   urlParams.append("ProductName", name);

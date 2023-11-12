@@ -14,6 +14,11 @@
   height: 100px;
 }
 
+.logo:hover {
+  background: #3c4d6d;
+  cursor: pointer;
+}
+
 .links {
   margin-right: 50px;
   display: flex;

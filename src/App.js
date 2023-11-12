@@ -24,19 +24,6 @@ function App() {
     document.title = "Legit Check";
   }, []);
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const storedUserName = localStorage.getItem("userName");
-
-    if (isLoggedIn && storedUserName) {
-      setLoggedIn(true);
-      setUserName(storedUserName);
-    }
-  }, []);
-
   return (
     <div className="App">
       <Router>
@@ -44,7 +31,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Shop />} />
-            <Route path="/shopcrud" element={<ShopCRUD />} />
+            <Route path="/shopcrud/:shopId" element={<ShopCRUD />} />
             <Route path="/checkout" element={<CheckOut />} />
             <Route path="/createProduct" element={<CreateForm />} />
             <Route path="/product/:id" element={<ProductDescription />} />

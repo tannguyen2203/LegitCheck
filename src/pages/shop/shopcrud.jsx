@@ -6,21 +6,39 @@ import axios from "axios";
 import "./shopcrud.css";
 
 export const ShopCRUD = () => {
+  const [shopId, setShopId] = useState(0);
   const [productData, setProduct] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://legitcheck.up.railway.app/api/Product/GetAllProduct")
-      .then((res) => {
-        return res.json();
-      })
+    // Retrieve userId from localStorage
+    const storedShopId = localStorage.getItem("shopId");
+    if (storedShopId) {
+      setShopId(parseInt(storedShopId, 10));
+    }
+
+    if (shopId) {
+      fetchData();
+    }
+  }, [shopId]);
+
+  console.log(shopId);
+
+  const fetchData = async () => {
+    fetch(`https://legitcheck.up.railway.app/api/Product/GetAllProduct`)
+      .then((res) => res.json())
       .then((data) => {
-        setProduct(data);
+        if (typeof data === "object" && data !== null) {
+          setProduct(data); // Không cần chuyển đổi đối tượng thành mảng
+        } else {
+          console.log("Dữ liệu trả về không phải là một đối tượng.");
+        }
       })
       .catch((err) => {
-        console.log(err.messsage);
+        console.log(err.message);
       });
-  }, []);
+  };
+
   const handleUpdate = (productId) => {
     navigate(`/updateProduct/${productId}`);
   };

@@ -17,7 +17,7 @@ export const CreateForm = () => {
   const formattedId = parseInt(id, 10);
   const formattedPrice = parseInt(price, 10);
 
-  const apiUrl = "https://localhost:7010/api/Product/CreateProduct";
+  const apiUrl = "https://legitcheck.up.railway.app/api/Product/CreateProduct";
   const urlParams = new URLSearchParams();
 
   urlParams.append("ProductName", name);
