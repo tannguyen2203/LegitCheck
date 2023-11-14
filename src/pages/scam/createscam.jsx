@@ -11,6 +11,14 @@ export const CreateScam = () => {
   const [userId, setUserId] = useState(0);
   const [shopId, setShopId] = useState(0);
 
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      // Chuyển đổi từ chuỗi sang số và gán vào state
+      setUserId(parseInt(storedUserId, 10));
+    }
+  }, []);
+
   const apiUrl = "https://legitcheck.up.railway.app/api/Scam/CreateScamPost";
   const urlParams = new URLSearchParams();
   urlParams.append("scammerName", name);
@@ -31,7 +39,7 @@ export const CreateScam = () => {
         console.log(res);
       })
       .catch((err) => {
-        console.error("Lỗi khi tạo scam:", err);
+        console.error("Lỗi khi tạo scam:", err.response.data);
       });
 
     setName("");
@@ -78,18 +86,6 @@ export const CreateScam = () => {
             placeholder="Enter product price"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="userId">UserId</label>
-          <input
-            type="number"
-            className="form-control"
-            id="userId"
-            placeholder="Enter user Id"
-            value={userId}
-            onChange={(e) => setUserId(parseInt(e.target.value))}
             required
           />
         </div>

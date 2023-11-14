@@ -18,6 +18,7 @@ import { LoginShop } from "./pages/login/loginshop";
 import { ShopCRUD } from "./pages/shop/shopcrud";
 import { CheckOut } from "./pages/shop/checkout";
 import { UserProvider } from "./pages/login/userContext";
+import { ScamShop } from "./pages/scam/scamShop";
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/scam" element={<Scam />} />
+            <Route path="/scamshop/:shopId" element={<ScamShop />} />
             <Route path="/createscam" element={<CreateScam />} />
             <Route path="/scamdescription/:id" element={<ScamDescription />} />
             <Route path="/updateProduct/:id" element={<UpdateForm />} />

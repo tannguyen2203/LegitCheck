@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./scam.css";
 
 export const Scam = () => {
   const [scamPosts, setScamPosts] = useState([]);
+  const navigate = useNavigate();
+
+  const isLoggedIn = () => {
+    return localStorage.getItem("userToken") !== null;
+  };
+
+  const handleCreatePost = () => {
+    if (isLoggedIn()) {
+      navigate("/createscam");
+    } else {
+      alert("Vui lòng đăng nhập trước khi tạo bài post");
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     axios
@@ -15,9 +29,9 @@ export const Scam = () => {
 
   return (
     <div className="container2">
-      <Link to="/createscam" className="button-1">
+      <button className="button-1" onClick={handleCreatePost}>
         Tạo bài post
-      </Link>
+      </button>
       {scamPosts.map((scamPost) => (
         <div
           className="item"

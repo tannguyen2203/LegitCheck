@@ -31,7 +31,6 @@ export const ProductDescription = () => {
         .then((res) => {
           alert("Sản phẩm đã được xóa thành công");
           navigate("/");
-          console.log(res);
         })
         .catch((error) => {
           console.error("Lỗi khi xóa sản phẩm:", error);
@@ -39,26 +38,19 @@ export const ProductDescription = () => {
     }
   };
 
-  const handleUpdate = () => {
-    navigate(`/updateProduct/${product.id}`);
-  };
-
   const handleCart = async () => {
     if (userId) {
-      // Kiểm tra nếu userId đã được lưu trong Local Storage
       try {
         const response = await axios.post(
           `https://legitcheck.up.railway.app/api/Cart/AddItemToCart?userId=${userId}&productId=${id}&quantity=1`
         );
-        console.log(response);
         alert("Sản phẩm đã được thêm vào giỏ hàng thành công!");
       } catch (error) {
         console.error("Lỗi khi thêm sản phẩm vào giỏ hàng:", error);
       }
     } else {
-      // Nếu userId không tồn tại trong Local Storage, yêu cầu người dùng đăng nhập trước khi thêm vào giỏ hàng
       alert("Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng!");
-      navigate("/login"); // Điều hướng đến trang đăng nhập
+      navigate("/login");
     }
   };
 
@@ -70,10 +62,23 @@ export const ProductDescription = () => {
     navigate("/");
   };
 
+  const handleCheckShop = (shopId) => {
+    console.log("shopId before navigation:", shopId);
+    navigate(`/scamshop/${shopId}`);
+  };
+
   return (
     <div className="container">
       <div className="top">
         <div className="arrow" onClick={handleBack}></div>
+      </div>
+
+      <div
+        className="button-check-shop-1"
+        style={{ marginLeft: "100px" }}
+        onClick={() => handleCheckShop(product.shopId)}
+      >
+        Check shop
       </div>
       <div>
         <img className="left-column" src={product.productImage} alt="" />
