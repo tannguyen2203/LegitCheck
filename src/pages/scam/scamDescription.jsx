@@ -53,8 +53,8 @@ export const ScamDescription = () => {
                 className="img-scam"
                 src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSjEBtO6mfYyUNImQDgttMG-s8f7mxA8QW7VGzS-iJmoMm5qO7s"
               />
-              <div className="item-label">Id:</div>
-              <div className="item-value">{scamData.userId}</div>
+              <div className="item-label">Shop Id:</div>
+              <div className="item-value">{scamData.shopId}</div>
             </div>
           </>
         )}
