@@ -15,7 +15,6 @@ export const ScamShop = () => {
         `https://legitcheck.up.railway.app/api/Scam/GetScamPostByShopId/${shopId}`
       )
       .then((response) => {
-        console.log("API Response:", response.data);
         setScamPosts(response.data);
         setIsLoading(false);
       })

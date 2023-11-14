@@ -63,7 +63,6 @@ export const ProductDescription = () => {
   };
 
   const handleCheckShop = (shopId) => {
-    console.log("shopId before navigation:", shopId);
     navigate(`/scamshop/${shopId}`);
   };
 
