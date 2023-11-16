@@ -1,6 +1,11 @@
 import React from "react";
 import "./footer.css";
 
+const handlePocily = () => {
+  window.location.href =
+    "https://www.facebook.com/legitchecksg?mibextid=LQQJ4d";
+};
+
 export const Footer = () => {
   return (
     <div className="main-footer">
@@ -18,8 +23,12 @@ export const Footer = () => {
           </div>
           <div className="col">
             <h2>Về chúng tôi</h2>
-            <p>Hỗ trợ</p>
-            <p>Chính sách</p>
+            <p style={{ cursor: "pointer" }} onClick={handlePocily}>
+              Hỗ trợ
+            </p>
+            <p style={{ cursor: "pointer" }} onClick={handlePocily}>
+              Chính sách
+            </p>
           </div>
         </div>
         <hr />
