@@ -25,7 +25,9 @@ export const ShopCRUD = () => {
   console.log(shopId);
 
   const fetchData = async () => {
-    fetch(`https://legitcheck.up.railway.app/api/Product/GetAllProduct`)
+    fetch(
+      `https://legitcheck.up.railway.app/api/Product/GetProductByShopId/${shopId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (typeof data === "object" && data !== null) {
@@ -53,7 +55,7 @@ export const ShopCRUD = () => {
         )
         .then((res) => {
           alert("Sản phẩm đã được xóa thành công");
-          navigate("/shopcrud");
+          navigate(`/shopcrud/${shopId}`);
           window.location.reload();
         })
         .catch((error) => {

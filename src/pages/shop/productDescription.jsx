@@ -14,6 +14,7 @@ export const ProductDescription = () => {
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
+        localStorage.setItem("shopTempId", data.shopId);
       })
       .catch((error) => {
         console.error("Error fetching product data:", error);
@@ -66,21 +67,38 @@ export const ProductDescription = () => {
     navigate(`/scamshop/${shopId}`);
   };
 
+  const handleShopDetail = (shopId) => {
+    navigate(`/shopitem/${shopId}`);
+  };
+
   return (
     <div className="container">
       <div className="top">
         <div className="arrow" onClick={handleBack}></div>
       </div>
-
-      <div
-        className="button-check-shop-1"
-        style={{ marginLeft: "100px" }}
-        onClick={() => handleCheckShop(product.shopId)}
-      >
-        Check shop
+      <div className="button-container">
+        <div
+          className="button-check-shop-1"
+          onClick={() => handleCheckShop(product.shopId)}
+        >
+          Check shop
+        </div>
+        <div>
+          <button
+            className="button-57"
+            role="button"
+            onClick={() => handleShopDetail(product.shopId)}
+          >
+            <span className="text">Shop Detail</span>
+            <span>Thông tin Shop</span>
+          </button>
+        </div>
       </div>
-      <div>
-        <img className="left-column" src={product.productImage} alt="" />
+
+      <div className="image">
+        <div>
+          <img className="left-column" src={product.productImage} alt="" />
+        </div>
       </div>
 
       <div className="right-column">

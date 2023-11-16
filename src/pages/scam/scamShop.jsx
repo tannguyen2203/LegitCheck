@@ -30,9 +30,11 @@ export const ScamShop = () => {
 
   return (
     <div className="container2">
-      <Link to="/createscam" className="button-1">
-        Tạo bài post
-      </Link>
+      <div>
+        <Link to="/createscam" className="button-1">
+          Tạo bài post
+        </Link>
+      </div>
       <div className="top">
         <div
           className="arrow"

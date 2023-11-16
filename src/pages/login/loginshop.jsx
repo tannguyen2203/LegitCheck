@@ -27,7 +27,7 @@ export const LoginShop = () => {
         console.log("Logged in successfully");
         localStorage.setItem("shopToken", JSON.stringify(response));
         localStorage.setItem("shopId", response.data.id);
-        navigate("/shopcrud");
+        navigate(`/shopcrud/${response.data.id}`);
       } else {
         alert("Invalid email or password");
       }

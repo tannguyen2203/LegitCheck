@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import "./createForm.css";
@@ -13,6 +14,14 @@ export const CreateForm = () => {
   const [brand, setBrand] = useState("");
   const [createDate, setCreateDate] = useState(new Date().toLocaleString());
   const [id, setId] = useState(0);
+
+  useEffect(() => {
+    const storedShopId = localStorage.getItem("shopId");
+    if (storedShopId) {
+      // Chuyển đổi từ chuỗi sang số và gán vào state
+      setId(parseInt(storedShopId, 10));
+    }
+  }, []);
 
   const formattedId = parseInt(id, 10);
   const formattedPrice = parseInt(price, 10);
@@ -47,8 +56,7 @@ export const CreateForm = () => {
       .post(newApiUrl, data)
       .then((res) => {
         alert("Thêm sản phẩm thành công");
-        console.log(res);
-        navigate(`/shopcrud`);
+        navigate(`/shopcrud/${id}`);
       })
       .catch((err) => console.log(err));
 
@@ -126,7 +134,7 @@ export const CreateForm = () => {
             required
           />
         </div>
-        <div className="form-group">
+        {/* <div className="form-group">
           <label htmlFor="Id">Id</label>
           <input
             type="number"
@@ -137,7 +145,7 @@ export const CreateForm = () => {
             onChange={(e) => setId(parseInt(e.target.value))}
             required
           />
-        </div>
+        </div> */}
         <button type="submit" className="btn btn-primary">
           Create
         </button>
