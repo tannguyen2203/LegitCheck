@@ -23,7 +23,7 @@ export const ShopItem = () => {
         // Xử lý lỗi nếu có
         console.error(error);
       });
-  });
+  }, [shopId]);
 
   useEffect(() => {
     fetch(
@@ -44,6 +44,10 @@ export const ShopItem = () => {
 
   const handleBack = () => {
     navigate("/");
+  };
+
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
   };
 
   return (
@@ -72,7 +76,10 @@ export const ShopItem = () => {
       <div className="shop">
         <div className="products">
           {productData.map((product) => (
-            <div key={product.id}>
+            <div
+              key={product.id}
+              onClick={() => handleProductClick(product.id)}
+            >
               <Product data={product} />
             </div>
           ))}
